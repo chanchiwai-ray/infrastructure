@@ -1,7 +1,13 @@
 # Three nodes Kubernetes Deployment
 
-This terragrunt unit deploy three nodes Kubernetes using Canoincal Kubernetes. This includes one control plane and three
-worker nodes (the control plane served also as a worker node).
+This terragrunt unit deploys three nodes Kubernetes cluster using Canoincal Kubernetes. The cluster includes one control
+plane node and three worker nodes (the control plane node served also as a worker node).
+
+**Features enabled**
+
+- Ingress
+- Loadbalancer
+- Local storage
 
 ## Example Deployment Status
 
@@ -36,4 +42,3 @@ juju-51b062-0   Ready    worker                 11m   v1.32.2
 juju-51b062-1   Ready    worker                 11m   v1.32.2
 juju-51b062-2   Ready    control-plane,worker   12m   v1.32.2
 ```
-
