@@ -35,32 +35,28 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [lxd_instance.microceph](https://registry.terraform.io/providers/terraform-lxd/lxd/2.2.0/docs/resources/instance) | resource |
+| [lxd_instance.machine](https://registry.terraform.io/providers/terraform-lxd/lxd/2.2.0/docs/resources/instance) | resource |
 | [lxd_volume.volumes](https://registry.terraform.io/providers/terraform-lxd/lxd/2.2.0/docs/resources/volume) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_node_name"></a> [node\_name](#input\_node\_name) | The name of node the virtual machine. | `string` | n/a | yes |
-| <a name="input_snap"></a> [snap](#input\_snap) | The snap to install. | `string` | n/a | yes |
-| <a name="input_snap_channel"></a> [snap\_channel](#input\_snap\_channel) | The snap channel to install from. | `string` | n/a | yes |
-| <a name="input_ssh_import_id"></a> [ssh\_import\_id](#input\_ssh\_import\_id) | Import the ssh key into the virtual machine | `string` | n/a | yes |
 | <a name="input_cpu"></a> [cpu](#input\_cpu) | The number of cpu cores for the virtual machine (default 1) | `number` | `1` | no |
 | <a name="input_disks"></a> [disks](#input\_disks) | The number of secondary disks for the virtual machine (default 0) | `number` | `0` | no |
 | <a name="input_image"></a> [image](#input\_image) | The image for the virtual machine (default ubuntu:24.04) | `string` | `"ubuntu:24.04"` | no |
 | <a name="input_memory"></a> [memory](#input\_memory) | The amount of memory for the virtual machine (default 2GiB) | `string` | `"2GiB"` | no |
+| <a name="input_node_name"></a> [node\_name](#input\_node\_name) | The name of node the virtual machine. | `string` | n/a | yes |
 | <a name="input_root_disk_size"></a> [root\_disk\_size](#input\_root\_disk\_size) | The size of the root disk (default 10GiB) | `string` | `"10GiB"` | no |
 | <a name="input_root_pool"></a> [root\_pool](#input\_root\_pool) | The storage pool for the root disk (default default) | `string` | `"default"` | no |
 | <a name="input_secondary_disk_size"></a> [secondary\_disk\_size](#input\_secondary\_disk\_size) | The sizes of the secondary disks (default 10GiB each) | `string` | `"10GiB"` | no |
-| <a name="input_secondary_pool"></a> [secondary\_pool](#input\_secondary\_pool) | The storage pool for the secondary disks | `string` | `"10GiB"` | no |
+| <a name="input_secondary_pool"></a> [secondary\_pool](#input\_secondary\_pool) | The storage pool for the secondary disks | `string` | `"default"` | no |
+| <a name="input_snap"></a> [snap](#input\_snap) | The snap to install. | `string` | n/a | yes |
+| <a name="input_snap_channel"></a> [snap\_channel](#input\_snap\_channel) | The snap channel to install from. | `string` | n/a | yes |
+| <a name="input_ssh_import_id"></a> [ssh\_import\_id](#input\_ssh\_import\_id) | Import the ssh key into the virtual machine | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_node"></a> [node](#output\_node) | The <username>@<ipv4\_address>. |
-<!-- END_TF_DOCS -->
-
-
-[lxd]: https://documentation.ubuntu.com/lxd/en/latest/
+| <a name="output_node"></a> [node](#output\_node) | The ipv4 address of the node. |
