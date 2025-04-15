@@ -1,4 +1,4 @@
 output "node" {
-  value       = "ubuntu@${lxd_instance.machine.ipv4_address}"
-  description = "The <username>@<ipv4_address>."
+  value       = lxd_instance.machine.ipv4_address
+  description = "The ipv4 address of the node."
 }
