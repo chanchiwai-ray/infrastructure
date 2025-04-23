@@ -9,7 +9,7 @@ if [ -z "$MODEL" ]; then
     exit 1
 fi
 
-while juju show-model $MODEL 2&>1 /dev/null ; do
+while juju show-model $MODEL > /dev/null 2>&1 ; do
     echo "$MODEL still exists.."
     sleep 5
 done;
