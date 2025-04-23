@@ -11,6 +11,11 @@ terraform {
     execute  = ["${get_repo_root()}/shared/hooks/get-kubeconfig.sh"]
   }
 
+  after_hook "update-load-balancer-cidr" {
+    commands = ["apply"]
+    execute  = ["${get_repo_root()}/shared/hooks/update-load-balancer-cidrs-config.sh"]
+  }
+
   after_hook "wait-for-model-destroyed" {
     commands = ["destroy"]
     execute  = ["${get_repo_root()}/shared/hooks/wait-for-model-destroy.sh", "k8s"]
