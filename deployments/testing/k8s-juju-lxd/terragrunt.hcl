@@ -38,9 +38,5 @@ inputs = {
     local-storage-enabled = true                        # enable local hostpath stroage
   }
 
-  k8s_worker_units       = 2
-  k8s_worker_base        = "ubuntu@24.04"
-  k8s_worker_channel     = "1.32/stable"
-  k8s_worker_constraints = "arch=amd64 cores=2 mem=4096M root-disk=40960M virt-type=virtual-machine"
-  k8s_worker_config      = {}
+  k8s_worker_units = 0
 }
