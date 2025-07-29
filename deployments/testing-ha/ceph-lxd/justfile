@@ -1,0 +1,19 @@
+microceph := ""
+microcephd := ""
+
+[private]
+default:
+  @just --list
+
+# Setup development environment (snap try)
+dev:
+	./scripts/run.sh --dev
+
+# Update microceph and microcephd binaries in-place
+update:
+	./scripts/run.sh --update --local-file {{microceph}} --remote-file /home/ubuntu/squashfs-root-microceph/bin/microceph
+	./scripts/run.sh --update --local-file {{microcephd}} --remote-file /home/ubuntu/squashfs-root-microceph/bin/microcephd
+
+# Clean up development environment (snap try)
+clean:
+	./scripts/run.sh --clean
