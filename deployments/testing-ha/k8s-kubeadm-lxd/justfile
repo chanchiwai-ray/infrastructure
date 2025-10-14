@@ -1,7 +1,0 @@
-[private]
-default:
-  @just --list
-
-# Setup development environment (snap try)
-init:
-	TG_CTX_TF_PATH=$(which terragrunt) ./hooks/init.sh
