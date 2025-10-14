@@ -33,13 +33,13 @@ inputs = {
   ssh_import_id  = "gh:chanchiwai-ray"
   node_prefix    = "k8s"
   image          = "ubuntu:24.04"
-  num            = 4
+  num            = 2
   cpu            = 2
   disks          = 0
   memory         = "4GiB"
   snap           = "hello-world"   # dummy snap
   snap_channel   = "latest/stable" # dummy snap channel
   root_pool      = "default"
-  root_disk_size = "30GiB"
+  root_disk_size = "50GiB"
 
 }
