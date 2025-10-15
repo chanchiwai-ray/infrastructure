@@ -13,7 +13,7 @@ non_control_nodes="${nodes[@]:1}"
 echo "Initializing k8s machines..."
 echo "Initializing k8s control node..."
 ssh ubuntu@$control_node -- "ssh-keygen -t rsa -b 2048 -N '' -f ~/.ssh/id_rsa -q <<< n > /dev/null 2>&1 || true && touch ~/.ssh/known_hosts"
-echo "Initializing microceph control node... Done"
+echo "Initializing k8s control node... Done"
 
 echo "Populating the public key of the control node to other nodes..."
 control_node_name="$(ssh ubuntu@$control_node -- hostname)"
