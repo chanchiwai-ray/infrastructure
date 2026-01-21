@@ -2,8 +2,8 @@
 
 set -eou pipefail
 
-KUBERNETES_VERSION="v1.32"  # see ../terragrunt.hcl
-CRIO_VERSION="v1.32"  # match KUBERNETES_VERSION
+KUBERNETES_VERSION="v1.35"  # see ../terragrunt.hcl
+CRIO_VERSION="v1.35"  # match KUBERNETES_VERSION
 
 nodes=($("$TG_CTX_TF_PATH" output -json | jq -r '.nodes.value | join(" ")'))
 
@@ -26,6 +26,7 @@ echo "Populating the public key of the control node to other nodes... Done"
 
 echo "Installing necessary packages..."
 for node in $control_node $non_control_nodes; do
+    ssh ubuntu@$node -- "sudo apt-mark unhold cri-o kubelet kubeadm kubectl || true"
     ssh ubuntu@$node -- "sudo swapoff -a"
     ssh ubuntu@$node -- "sudo modprobe br_netfilter && sudo sysctl -w net.ipv4.ip_forward=1"
     ssh ubuntu@$node -- "sudo apt-get install -y apt-transport-https ca-certificates curl gpg"
