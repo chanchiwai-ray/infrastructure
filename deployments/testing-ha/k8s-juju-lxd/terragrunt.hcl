@@ -29,7 +29,7 @@ inputs = {
 
   k8s_units       = 1
   k8s_base        = "ubuntu@24.04"
-  k8s_channel     = "1.32/stable"
+  k8s_channel     = "1.35/stable"
   k8s_constraints = "arch=amd64 cores=2 mem=4096M root-disk=40960M virt-type=virtual-machine"
   k8s_config = {
     load-balancer-enabled = true                        # enable load balancer feature
