@@ -1,6 +1,6 @@
 # Deploy Kubernetes cluster using kubeadm
 
-This terragrunt module set up LXD VMs ready for bootstraping a Kubernetes cluster using kubeadm. The VMs will be
+This terragrunt module set up LXD VMs ready for bootstrapping a Kubernetes cluster using kubeadm. The VMs will be
 configured to have necessary packages (`kubeadm`, `kubectl`, ...) to begin with.
 
 ## Quickstart
