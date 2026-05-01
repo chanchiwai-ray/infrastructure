@@ -5,7 +5,7 @@ plane node and three worker nodes (the control plane node served also as a worke
 
 **Features enabled**
 
-- Ingress
+- Gateway
 - Loadbalancer
 - Local storage
 

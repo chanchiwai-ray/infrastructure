@@ -11,11 +11,6 @@ terraform {
     execute  = ["${get_repo_root()}/shared/hooks/get-kubeconfig.sh"]
   }
 
-  after_hook "update-load-balancer-cidr" {
-    commands = ["apply"]
-    execute  = ["${get_repo_root()}/shared/hooks/update-load-balancer-cidrs-config.sh"]
-  }
-
   after_hook "wait-for-model-destroyed" {
     commands = ["destroy"]
     execute  = ["${get_repo_root()}/shared/hooks/wait-for-model-destroy.sh", "k8s"]
@@ -32,15 +27,16 @@ inputs = {
   k8s_channel     = "1.35/stable"
   k8s_constraints = "arch=amd64 cores=2 mem=4096M root-disk=40960M virt-type=virtual-machine"
   k8s_config = {
-    load-balancer-enabled = true                        # enable load balancer feature
-    load-balancer-cidrs   = "10.42.75.200-10.42.75.200" # use the IPs within the juju network (i.e. lxdbr0 network in this case)
-    ingress-enabled       = true                        # enable ingress feature
-    local-storage-enabled = true                        # enable local hostpath stroage
+    gateway-enabled       = true                 # enable gateway
+    local-storage-enabled = true                 # enable local hostpath stroage
+    load-balancer-enabled = true                 # enable load balancer feature
+    load-balancer-l2-mode = true                 # enable load balancer l2 mode
+    load-balancer-cidrs   = "10.8.0.5-10.8.0.15" # virutal IPs for load balancer
   }
 
   k8s_worker_units       = 2
   k8s_worker_base        = "ubuntu@24.04"
-  k8s_worker_channel     = "1.32/stable"
+  k8s_worker_channel     = "1.35/stable"
   k8s_worker_constraints = "arch=amd64 cores=2 mem=4096M root-disk=40960M virt-type=virtual-machine"
   k8s_worker_config      = {}
 }

@@ -5,7 +5,7 @@ plane node and a worker node.
 
 **Features enabled**
 
-- Ingress
+- Gateway
 - Loadbalancer
 - Local storage
 
