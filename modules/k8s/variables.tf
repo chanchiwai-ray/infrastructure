@@ -1,3 +1,9 @@
+variable "model_name" {
+  type        = string
+  description = "Name of the model"
+  default     = "k8s"
+}
+
 variable "cloud_name" {
   type        = string
   description = "Name of the cloud"
