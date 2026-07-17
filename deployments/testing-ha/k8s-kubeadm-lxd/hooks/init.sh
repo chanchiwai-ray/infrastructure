@@ -2,8 +2,8 @@
 
 set -eou pipefail
 
-KUBERNETES_VERSION="v1.32"  # see ../terragrunt.hcl
-CRIO_VERSION="v1.32"  # match KUBERNETES_VERSION
+KUBERNETES_VERSION="v1.35"
+CRIO_VERSION=$KUBERNETES_VERSION
 
 nodes=($("$TG_CTX_TF_PATH" output -json | jq -r '.nodes.value | join(" ")'))
 

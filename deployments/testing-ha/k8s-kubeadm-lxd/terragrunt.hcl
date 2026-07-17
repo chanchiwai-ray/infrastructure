@@ -36,10 +36,9 @@ inputs = {
   num            = 2
   cpu            = 2
   disks          = 0
-  memory         = "4GiB"
+  memory         = "8GiB"
   snap           = "hello-world"   # dummy snap
   snap_channel   = "latest/stable" # dummy snap channel
   root_pool      = "default"
-  root_disk_size = "50GiB"
-
+  root_disk_size = "70GiB"
 }
