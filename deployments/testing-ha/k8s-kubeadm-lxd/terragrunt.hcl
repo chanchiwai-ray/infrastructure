@@ -41,5 +41,4 @@ inputs = {
   snap_channel   = "latest/stable" # dummy snap channel
   root_pool      = "default"
   root_disk_size = "50GiB"
-
 }
