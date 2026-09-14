@@ -18,13 +18,13 @@ terraform {
 
   after_hook "add-to-known-hosts" {
     commands     = ["apply"]
-    execute      = ["./hooks/add_to_known_hosts.sh"]
+    execute      = ["${get_repo_root()}/shared/hooks/add-to-known-hosts.sh"]
     run_on_error = true
   }
 
   before_hook "remove-from-known-hosts" {
     commands     = ["destroy"]
-    execute      = ["./hooks/remove_from_known_hosts.sh"]
+    execute      = ["${get_repo_root()}/shared/hooks/remove-from-known-hosts.sh"]
     run_on_error = true
   }
 
