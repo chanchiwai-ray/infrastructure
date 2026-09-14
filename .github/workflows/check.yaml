@@ -22,4 +22,4 @@ jobs:
           sudo snap install terragrunt --classic
 
       - name: Run lint checks
-        run: just check
+        run: just lint
