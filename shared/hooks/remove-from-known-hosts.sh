@@ -2,7 +2,7 @@
 
 set -eou pipefail
 
-nodes="$("$TG_CTX_TF_PATH" output -json | jq -r '.nodes.value | join(" ")')"
+nodes="$("$TG_CTX_TF_PATH" output -json | jq -r '(.nodes.value // [.node.value]) | join(" ")')"
 
 if [[ -z "$nodes" ]]; then
     exit 0
