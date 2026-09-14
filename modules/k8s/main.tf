@@ -7,9 +7,8 @@ terraform {
   }
 }
 
-
 resource "juju_model" "k8s_model" {
-  name = "k8s"
+  name = var.model_name
 
   cloud {
     name   = var.cloud_name
@@ -17,34 +16,34 @@ resource "juju_model" "k8s_model" {
   }
 }
 
-module "k8s" {
-  source = "git::https://github.com/canonical/k8s-operator//charms/worker/k8s/terraform?ref=main"
-  count  = var.k8s_units != 0 ? 1 : 0
-
-  units      = var.k8s_units
+resource "juju_application" "k8s" {
+  count      = var.k8s_units != 0 ? 1 : 0
   model_uuid = juju_model.k8s_model.uuid
 
-  base        = var.k8s_base
-  channel     = var.k8s_channel
+  charm {
+    name    = "k8s"
+    base    = var.k8s_base
+    channel = var.k8s_channel
+  }
+
+  units       = var.k8s_units
+  config      = var.k8s_config
   constraints = var.k8s_constraints
-
-  config = var.k8s_config
-
 }
 
-module "k8s_worker" {
-  source = "git::https://github.com/canonical/k8s-operator//charms/worker/terraform?ref=main"
-  count  = var.k8s_worker_units != 0 ? 1 : 0
-
-  units      = var.k8s_worker_units
+resource "juju_application" "k8s_worker" {
+  count      = var.k8s_worker_units != 0 ? 1 : 0
   model_uuid = juju_model.k8s_model.uuid
 
-  base        = var.k8s_worker_base
-  channel     = var.k8s_worker_channel
+  charm {
+    name    = "k8s-worker"
+    base    = var.k8s_worker_base
+    channel = var.k8s_worker_channel
+  }
+
+  units       = var.k8s_worker_units
+  config      = var.k8s_worker_config
   constraints = var.k8s_worker_constraints
-
-  config = var.k8s_worker_config
-
 }
 
 resource "juju_integration" "k8s_to_k8s_worker" {
@@ -52,12 +51,12 @@ resource "juju_integration" "k8s_to_k8s_worker" {
   count      = var.k8s_units != 0 && var.k8s_worker_units != 0 ? 1 : 0
 
   application {
-    name     = module.k8s[0].app_name
+    name     = juju_application.k8s[0].name
     endpoint = "k8s-cluster"
   }
 
   application {
-    name     = module.k8s_worker[0].app_name
+    name     = juju_application.k8s_worker[0].name
     endpoint = "cluster"
   }
 }
