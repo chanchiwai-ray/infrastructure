@@ -1,8 +1,8 @@
 name: Quality Checks
 
 on:
-  workflow_dispatch:
   pull_request:
+  workflow_dispatch:
 
 jobs:
   lint:
@@ -12,16 +12,14 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v4
 
-      - name: Install Terraform
-        uses: hashicorp/setup-terraform@v3
+      - name: Install Just
+        run: |
+          sudo snap install just --classic
 
-      - name: Terraform format lint
-        run: terraform fmt -check -recursive -diff
+      - name: Install Terraform / Terragrunt
+        run: |
+          sudo snap install terraform --classic
+          sudo snap install terragrunt --classic
 
-      - name: Terragrunt HCL format lint
-        uses: gruntwork-io/terragrunt-action@v2
-        with:
-          tf_version: "1.11.3"
-          tg_version: "0.67.10"
-          tg_command: "hclfmt --terragrunt-check --terragrunt-diff"
-
+      - name: Run lint checks
+        run: just check
