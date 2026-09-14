@@ -1,8 +1,12 @@
-# 🚧 Ray's Development Infrastructure
+# 🏗 Ray's Development Infrastructure
 
 This repository contains the terraform plans for my local software development. It's not used for continuous deployment,
 but rather a way to quickly set up different infrastructures such as Kubernetes, Ceph, or OpenStack, for developing and
 testing new features.
+
+## 🛠️ Usage
+
+Run `just` to see the available commands.
 
 ## 🌲 Repository structure
 
